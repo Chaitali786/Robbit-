@@ -7,6 +7,7 @@ import HomePosts from "./components/HomePosts/HomePosts";
 export default async  function Home() {
    
    const {data, error} = await getHomePosts()
+   console.log("Server" , data)
   return (
     <div className="m-4 ">
       
