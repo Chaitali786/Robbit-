@@ -8,6 +8,19 @@ export const getHomePosts = async () => {
   
 }
 
+export const searchPosts = async (searchTerm: string) => {
+  const supabase = createClient()
+  return await supabase.from('Post')
+  .select('title,slug').textSearch('title',searchTerm)
+}
+  
+
+
+
+
+
+
+
 export const getSinglePost = async (slug:string) => {
   const supabase = createClient()
   return await supabase.from('Post')
@@ -18,3 +31,4 @@ export const getSinglePost = async (slug:string) => {
 
 export type HomePostType = QueryData<ReturnType<typeof getHomePosts>>
 export type SinglePostType = QueryData<ReturnType<typeof getSinglePost>>
+export type SearchResultsType = QueryData<ReturnType<typeof searchPosts>>
