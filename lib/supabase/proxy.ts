@@ -22,6 +22,14 @@ export const updateSession = async (request:NextRequest) => {
       }
     )
 
+    const {data:{user}, error} = await supabase.auth.getUser()
+    const protectedRoutes : string[] = ["/create"] 
+    if(!user && protectedRoutes.includes(request.nextUrl.pathname))
+      return NextResponse.redirect(new URL("/auth/signup", request.url))
     
+    
+    
+    
+    console.log("G'day from middleware !")
     return supabaseResponse
 }

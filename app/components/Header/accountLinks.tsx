@@ -10,6 +10,7 @@ const accountLinks = async() => {
       {user ? 
          <>
          <div onClick = {logout}  className="button">Logout</div>
+         <Link className="button-secondary" href="create"> Creat Post</Link>
          </>
       : 
           <>

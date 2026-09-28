@@ -12,8 +12,7 @@ export default async  function Home() {
 
    console.log("Server" , data)
   return (
-    <div className="m-4 ">
-      
+    <div className="m-4 ">  
              
        
         <h1 className ="heading "> Welcome To Robbit !</h1>
