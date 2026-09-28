@@ -22,6 +22,6 @@ export const updateSession = async (request:NextRequest) => {
       }
     )
 
-    console.log("User:",await supabase.auth.getUser())
+    
     return supabaseResponse
 }

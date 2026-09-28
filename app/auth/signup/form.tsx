@@ -13,7 +13,7 @@ const SignUpForm = () => {
         <input className="input" name="email" placeholder="Email" />
 
         <label htmlFor="password"> Enter Password</label>
-        <input className="input" name="password" placeholder="Password" />
+        <input className="input" name="password" placeholder="Password" type = "password" />
 
         <button formAction={SignUp}>SignUp</button>
       </form>
