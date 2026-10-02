@@ -5,7 +5,7 @@ import { getHomePosts } from "@/lib/supabase/queries";
 import HomePosts from "../components/HomePosts/HomePosts";
 import { createClient } from "@/lib/supabase/serverClients";
 
-
+export const revalidate =600
 export default async  function Home() {
    const supabase = await createClient() 
    const {data, error} = await getHomePosts(supabase)

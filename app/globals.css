@@ -10,8 +10,8 @@
   --color-ivory : #fbffec;
   --color-saratoga : #535faa ;
 }
-.button { @apply inline-block p-4 rounded-xl  bg-pacifika text-ivory text-2xl font-bold border-2 border-pacifika hover:text-sushi }
-.button-secondary { @apply  inline-block p-4 rounded-xl  bg-saratoga text-ch text-2xl font-bold}
+.button { @apply cursor-pointer inline-block p-4 rounded-xl  bg-pacifika text-ivory text-2xl font-bold border-2 border-pacifika hover:text-sushi }
+.button-secondary { @apply  cursor-pointer inline-block p-4 rounded-xl  bg-saratoga text-ch text-2xl font-bold}
 .heading{@apply text-6xl text-center mb-8}
 
 .input{

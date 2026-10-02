@@ -14,7 +14,7 @@ const DeleteButton = ({id}:{id:string}) => {
   return (
     <>
     
-    <button onClick ={() => mutate(id)}className = "button-secondary">Delete Post</button>
+    <button onClick ={() => mutate(id)} className = "button-secondary">Delete Post</button>
     </>
   )
 }

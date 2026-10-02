@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useQuery } from "@tanStack/react-query";
 import createClient from "@/lib/supabase/createClient";
 
+;
+
 const HomePosts = ({ posts }: { posts: HomePostType }) => {
  const supabase = createClient()
   const { data } = useQuery({

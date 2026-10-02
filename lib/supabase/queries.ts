@@ -20,7 +20,7 @@ export const getSinglePost = async (slug: string) => {
   const supabase = createClient();
   return await supabase
     .from("Post")
-    .select('post_id,title,content,author("id","username")')
+    .select('post_id,title,content,image,author("id","username")')
     .eq("slug", slug)
     .single();
 };

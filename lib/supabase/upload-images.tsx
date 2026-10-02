@@ -1,0 +1,20 @@
+import React from 'react'
+import { createClient } from './serverClients'
+import {v4 as uuid} from 'uuid'
+
+const uploadImages = async(image:File) => {
+ const supabase = await createClient()
+ const imageName:string[] = image.name.split('.')
+ 
+ const uniqueImageName = `${imageName[0]}-${uuid()}.${imageName[1]}`
+  
+ const {data,error} = await (await supabase).storage.from("images").upload(uniqueImageName,image)
+ if (error) throw error
+ const {data:{publicUrl}} = await supabase.storage.from("images").getPublicUrl(data.path)
+
+ return publicUrl
+}
+
+export default uploadImages
+
+
