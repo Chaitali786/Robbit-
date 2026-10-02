@@ -12,6 +12,7 @@ import z from "zod";
 
 const CreatePostPage = () => {
   const postImageSchema = postSchema.omit({image: true}).extend({image: z.unknown().transform(value => {return value as FileList}).optional()})
+  
   const {
     register,
     handleSubmit,
@@ -30,7 +31,8 @@ const CreatePostPage = () => {
       <form 
        onSubmit={handleSubmit((values) =>{
          const imageForm = new FormData()
-        if (values.image) imageForm.append('image',values.image[0])
+         if (values.image) imageForm.append('image',values.image[0])
+          
         mutate({title:values.title,
           content:values.content,
           image:imageForm

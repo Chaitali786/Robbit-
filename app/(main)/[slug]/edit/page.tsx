@@ -29,7 +29,7 @@ const EditPagePost = async ({
     { data &&
       <div className ="border border-sushi p-4 rounded-2xl mt-8 max-w-md m-auto">
       <h1 className="heading">Edit {data.title}</h1>
-      <EditPageForm initialValues ={{title:data.title, content: data.content}}/>
+      <EditPageForm initialValues ={{title:data.title, content: data.content,image: data.image}} post_id={data.post_id}/>
       </div>
     }
     </>
