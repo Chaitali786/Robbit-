@@ -7,6 +7,7 @@ import { postSchema } from "@/actions/schemas";
 import { useMutation } from "@tanStack/react-query";
 import { EditPost } from "@/actions/edit-page-action";
 import z from "zod";
+import { useState } from "react";
 
 const EditPageForm = ({
   initialValues,
@@ -15,6 +16,8 @@ const EditPageForm = ({
   initialValues: Pick<Tables<"Post">, "title" | "content" | "image">;
   post_id: string;
 }) => {
+
+  
   const postImageSchema = postSchema.omit({ image: true }).extend({
     image: z
       .unknown()

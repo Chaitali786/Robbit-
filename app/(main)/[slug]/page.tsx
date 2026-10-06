@@ -14,7 +14,7 @@ const PostPage = async ({params}:{params:{slug: string}}) => {
 
   console.log("Is this the correct Author :", isAuthor)
   console.log("SlugData" , data ,"Error", error)
-
+  
   return (
     <div>
       {data && 
