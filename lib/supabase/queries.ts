@@ -27,7 +27,7 @@ export const getSinglePost = async (slug: string) => {
 
 export const getPostComments = async(post_id: string) => {
   const supabase = createClient()
-  const {data, error} = await supabase.from("comments").select('content, user_id("id","username")')
+  const {data, error} = await supabase.from("comments").select('id, content, user_id("id","username")')
                                                .eq('post_id',post_id)
                                                .order("created_at",{ascending:false})
       if (error) console.log(error)
@@ -38,3 +38,4 @@ export const getPostComments = async(post_id: string) => {
 export type HomePostType = QueryData<ReturnType<typeof getHomePosts>>;
 export type SinglePostType = QueryData<ReturnType<typeof getSinglePost>>;
 export type SearchResultsType = QueryData<ReturnType<typeof searchPosts>>;
+export type CommentsType = QueryData<ReturnType<typeof getPostComments>>;
