@@ -42,7 +42,9 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
               </Link>
             </div>
           )}
-           {comments && <Comments  postid ={data.post_id} />}
+           {comments && 
+           <Comments  postid ={data.post_id} isAuthor={isAuthor} userId={user?user.id : null}
+           />}
           {user && <AddComment postId = {data.post_id}/>}
         </div>
       )}
