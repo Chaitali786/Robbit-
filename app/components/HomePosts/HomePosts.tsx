@@ -22,15 +22,18 @@ const HomePosts = ({ posts }: { posts: HomePostType }) => {
   console.log("Component", data);
   return (
     <div>
-      HomePosts
+      
       {data.map((post) => (
         <Link
           key={post.post_id}
           className="block border border-sushi p-4 rounded-2xl m-4"
           href={`/${post.slug}`}
         >
-          <h3 className="font-bold text-2xl">{post.title}</h3>
-          <p className="text-right">posted by - {post.author.username}</p>
+          <h3 className="font-bold text-pacifika text-2xl">{post.title}</h3>
+          <p className="font-medium text-slate-700 text-right">posted by - {post.author.username}</p>
+          <p className="text-slate-400 text-right">
+                {new Date(post.created_at).toLocaleDateString("sv-SE")}
+          </p>
         </Link>
       ))}
     </div>
