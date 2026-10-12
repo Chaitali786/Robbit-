@@ -20,18 +20,44 @@ const search = () => {
 
 
   return (
-    <div className="relative">
-    <div className="border-pacifika border ">
-      <input onChange ={handleChange} placeholder = "search for posts" value = {input}/>
-      <button onClick={handleClick}>Search</button>
-    </div>
-    {searchResults && 
-      <div className="absolute left-0 top-full border-pacifika border p-2 w-full bg-ivory ">
-        {searchResults.map((result,index) => 
-        <Link className="block " key={index} href={`/${result.slug}`}>{result.title}</Link>
-        )}
-      </div>
-    }
+    <div className="relative w-full max-w-md">
+       <div className="flex flex-1 items-center justify-between rounded-full border-2 border-pacifika bg-ivory shadow-sm overflow-hidden focus-within:ring-2 focus-within:ring-saratoga focus-within:border-transparent transition-all">
+      <input
+        className="w-full flex-1 px-4 py-2 text-sm bg-transparent outline-none"
+        onChange={handleChange}
+        placeholder="search for posts"
+        value={input}
+      />
+      <button
+        className="cursor-pointer bg-pacifika text-ch font-semibold text-xs px-4 py-2.5 hover:bg-sushi transition-colors shrink-0"
+        onClick={handleClick}
+      >
+        Search
+      </button>
+       </div>
+        {searchResults &&           
+          <div className="absolute left-0  rounded-2xl top-full border-pacifika border p-2 w-full bg-ivory z-50 ">
+           {
+            searchResults.length > 0 ? (
+                 searchResults.map((result,index) => 
+            <Link className="block " key={index} href={`/${result.slug}`}>{result.title}</Link>
+            )
+
+            ):(<p className="p-3 text-center text-xs text-slate-500"> No Post Found !!!! </p>)
+
+           }
+            
+
+
+
+
+
+
+            
+           
+
+          </div>
+        }
     </div>
     
   )
@@ -39,6 +65,3 @@ const search = () => {
 
 export default search
 
-function awaitsearchPosts(input: string): { data: any; error: any } {
-  throw new Error('Function not implemented.')
-}

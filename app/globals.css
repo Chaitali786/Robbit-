@@ -1,19 +1,29 @@
 @import "tailwindcss";
 
-*{
-  box-sizing:border-box ;
+* {
+  box-sizing: border-box;
 }
-@theme{
-  --color-pacifika : #6e7d1f ;
-  --color-sushi :#A7A939 ;
-  --color-ch : #FAF3CC ;
-  --color-ivory : #fbffec;
-  --color-saratoga : #535faa ;
-}
-.button { @apply cursor-pointer inline-block p-4 rounded-xl  bg-pacifika text-ivory text-2xl font-bold border-2 border-pacifika hover:text-sushi }
-.button-secondary { @apply  cursor-pointer inline-block p-4 rounded-xl  bg-saratoga text-ch text-2xl font-bold}
-.heading{@apply text-6xl text-center mb-8}
 
-.input{
-  @apply border-saratoga border p-2 my-2 rounded-xl
+@theme {
+  --color-pacifika: #005293; 
+  --color-sushi: #003865;    
+  --color-ch: #fecd00;       
+  --color-ivory: #ffffff;    
+  --color-saratoga: #f5b800; 
+}
+
+.button {
+  @apply cursor-pointer inline-flex items-center justify-center px-4 py-2 rounded-lg bg-pacifika text-ivory text-sm font-semibold border border-pacifika hover:bg-sushi hover:text-ch transition-colors duration-150;
+}
+
+.button-secondary {
+  @apply cursor-pointer inline-flex items-center justify-center px-4 py-2 rounded-lg bg-saratoga text-sushi text-sm font-semibold hover:bg-ch transition-colors duration-150;
+}
+
+.heading {
+  @apply text-6xl text-center mb-8;
+}
+
+.input {
+  @apply border-pacifika border p-2 my-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-ch;
 }
