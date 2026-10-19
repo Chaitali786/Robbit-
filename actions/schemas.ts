@@ -17,6 +17,7 @@ export const signUpSchema = z.object(
 export const postSchema = z.object(
   {
    title: z.string().min(8,"You need atleast 8 characters"),
+   category: z.string().min(8,"Please select category"),
    content: z.string("Zod says content are optional!").optional() ,
    image:z.instanceof(FormData).optional()
 }

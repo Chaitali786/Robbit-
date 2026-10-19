@@ -8,7 +8,14 @@ import {CreatePost} from "@/actions/create-post-action"
 import { useMutation } from "@tanStack/react-query";
 import z from "zod";
 
-
+const CATEGORIES = [
+  "Workplace & Culture",
+  "Everyday Slang",
+  "Grammar (Grammatik)",
+  "Vocabulary",
+  "SFI Help",
+  "Culture & Customs",
+];
 
 const CreatePostPage = () => {
   const postImageSchema = postSchema.omit({image: true}).extend({image: z.unknown().transform(value => {return value as FileList}).optional()})
@@ -35,12 +42,30 @@ const CreatePostPage = () => {
           
         mutate({title:values.title,
           content:values.content,
+          category: values.category,
           image:imageForm
         })
        }
        
       )}
        className="flex flex-col w-full m-auto border-3 rounded-2xl text-left border-sushi p-4 mb-4 ">
+        <label htmlFor="category">Category</label>
+        <select
+          className="input bg-white cursor-pointer"
+          defaultValue=""
+          {...register("category")}
+        >
+          <option value="" disabled>
+            Select a category...
+          </option>
+          {CATEGORIES.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+        {errors.category && <ErrorMessage error={errors.category.message!} />}
+        
         <label htmlFor="title"> Title</label>
         <input className="input" placeholder="Title" {...register("title")} />
         {errors.title && <ErrorMessage error={errors.title.message!} />}
