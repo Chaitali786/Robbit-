@@ -33,7 +33,7 @@ const PostPage = async ({ params }: { params: { slug: string } }) => {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
        
-        <div className="w-full sticky top-24">
+        <div className="w-full sticky lg:top-24">
           {data.image ? (
             <div className="overflow-hidden rounded-2xl border-2 border-pacifika/15 shadow-sm bg-white">
               <img

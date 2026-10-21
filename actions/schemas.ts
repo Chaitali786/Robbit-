@@ -23,6 +23,8 @@ export const postSchema = z.object(
 }
 ) 
 
+export const editPostSchema = postSchema.omit({ category: true });
+
 export const commentSchema = z.object({
   content : z.string().min(3,"Comments must be 3 character long !")
 })

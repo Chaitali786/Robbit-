@@ -1,7 +1,7 @@
 "use server";
 
 import z from "zod";
-import { postSchema } from "./schemas";
+import { editPostSchema, postSchema } from "./schemas";
 import { createClient } from "@/lib/supabase/serverClients";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -12,7 +12,7 @@ export const EditPost = async ({
   postdata,
   post_id,
 }: {
-  postdata: z.infer<typeof postSchema>;
+  postdata: z.infer<typeof editPostSchema>;
   post_id: string;
 }) => {
   //const parsedData = postSchema.parse(postdata);
