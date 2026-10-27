@@ -5,7 +5,7 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CreatePost } from "@/actions/create-post-action";
-import { useMutation } from "@tanStack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import z from "zod";
 
 const CATEGORIES = [
@@ -85,7 +85,6 @@ const CreatePostPage = () => {
         />
         <label htmlFor="image">Add an Image (Optional)</label>
         <input
-          
           type="file"
           {...register("image")}
           className="input file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-pacifika file:text-ch hover:file:bg-sushi file:cursor-pointer text-xs text-slate-500 cursor-pointer"

@@ -1,13 +1,11 @@
 "use client";
 import { getHomePosts, HomePostType } from "@/lib/supabase/queries";
 import Link from "next/link";
-import { useQuery } from "@tanStack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import createClient from "@/lib/supabase/createClient";
 
-;
-
 const HomePosts = ({ posts }: { posts: HomePostType }) => {
- const supabase = createClient()
+  const supabase = createClient();
   const { data } = useQuery({
     queryKey: ["home-posts"],
     queryFn: async () => {
@@ -22,7 +20,6 @@ const HomePosts = ({ posts }: { posts: HomePostType }) => {
   console.log("Component", data);
   return (
     <div>
-      
       {data.map((post) => (
         <Link
           key={post.post_id}
@@ -30,9 +27,11 @@ const HomePosts = ({ posts }: { posts: HomePostType }) => {
           href={`/${post.slug}`}
         >
           <h3 className="font-bold text-pacifika text-2xl">{post.title}</h3>
-          <p className="font-medium text-slate-700 text-right">posted by - {post.author.username}</p>
+          <p className="font-medium text-slate-700 text-right">
+            posted by - {post.author.username}
+          </p>
           <p className="text-slate-400 text-right">
-                {new Date(post.created_at).toLocaleDateString("sv-SE")}
+            {new Date(post.created_at).toLocaleDateString("sv-SE")}
           </p>
         </Link>
       ))}

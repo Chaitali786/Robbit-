@@ -4,7 +4,7 @@ import ErrorMessage from "@/app/components/ErrorMessage";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { postSchema } from "@/actions/schemas";
-import { useMutation } from "@tanStack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { EditPost } from "@/actions/edit-page-action";
 import z from "zod";
 import { useState } from "react";

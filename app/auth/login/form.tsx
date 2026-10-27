@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LogIn } from "@/actions/login-action";
 import { loginSchema } from "@/actions/schemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import { useMutation } from "@tanStack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 const LogInForm = () => {
   const {
@@ -16,9 +16,9 @@ const LogInForm = () => {
     resolver: zodResolver(loginSchema),
   });
   //console.log("Errors:", errors);
-  const {mutate ,error,isPending} =  useMutation({
-    mutationFn: LogIn
-  })
+  const { mutate, error, isPending } = useMutation({
+    mutationFn: LogIn,
+  });
   return (
     <div>
       <form
@@ -42,8 +42,10 @@ const LogInForm = () => {
           type="password"
         />
         {errors.password && <ErrorMessage error={errors.password.message!} />}
-        <button className="button-secondary self-center text-xs w-auto px-3.5 py-1.5 shadow-sm disabled:opacity-50">{isPending ? "Logging in" : "Log In!"}</button>
-        {error && <ErrorMessage error={error.message}/>}
+        <button className="button-secondary self-center text-xs w-auto px-3.5 py-1.5 shadow-sm disabled:opacity-50">
+          {isPending ? "Logging in" : "Log In!"}
+        </button>
+        {error && <ErrorMessage error={error.message} />}
       </form>
     </div>
   );

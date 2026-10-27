@@ -4,7 +4,7 @@ import { commentSchema } from "@/actions/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanStack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { AddCommentAction } from "@/actions/add-comment-action";
 
