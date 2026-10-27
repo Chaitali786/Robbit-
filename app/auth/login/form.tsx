@@ -42,7 +42,7 @@ const LogInForm = () => {
           type="password"
         />
         {errors.password && <ErrorMessage error={errors.password.message!} />}
-        <button >{isPending ? "Logging in" : "Log In!"}</button>
+        <button className="button-secondary self-center text-xs w-auto px-3.5 py-1.5 shadow-sm disabled:opacity-50">{isPending ? "Logging in" : "Log In!"}</button>
         {error && <ErrorMessage error={error.message}/>}
       </form>
     </div>

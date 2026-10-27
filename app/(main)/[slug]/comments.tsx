@@ -13,7 +13,7 @@ const comments = async ({
 }) => {
   const comments = await getPostComments(postid);
   return (
-    <div>
+    <div >
       {comments && comments.length > 0 ? (
         comments.map((comment) => (
           <div key={comment.id} className="rounded-2xl border-2 m-4 p-2">

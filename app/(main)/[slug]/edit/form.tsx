@@ -8,6 +8,7 @@ import { useMutation } from "@tanStack/react-query";
 import { EditPost } from "@/actions/edit-page-action";
 import z from "zod";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const EditPageForm = ({
   initialValues,
@@ -16,16 +17,16 @@ const EditPageForm = ({
   initialValues: Pick<Tables<"Post">, "title" | "content" | "image">;
   post_id: string;
 }) => {
-
-  
-  const postImageSchema = postSchema.omit({ image: true }).extend({
-    image: z
-      .unknown()
-      .transform((value) => {
-        return value as FileList;
-      })
-      .optional(),
-  });
+  const postImageSchema = postSchema
+    .omit({ image: true, category: true })
+    .extend({
+      image: z
+        .unknown()
+        .transform((value) => {
+          return value as FileList;
+        })
+        .optional(),
+    });
 
   const {
     register,
@@ -40,27 +41,35 @@ const EditPageForm = ({
     },
   });
 
+  const router = useRouter();
   const { mutate, error, isPending } = useMutation({
     mutationFn: EditPost,
+    onSuccess: (data) => {
+      if (data?.slug) {
+        router.push(`/${data.slug}`);
+        router.refresh();
+      }
+    },
+    onError: (err: any) => {
+      console.error("Edit error:", err.message);
+      alert(err.message || "Failed to update post");
+    },
   });
 
   return (
     <>
       <div>EditPageForm</div>
-      <form 
+      <form
         onSubmit={handleSubmit((values) => {
-
-          let imageForm = undefined
-          if (values.image && typeof values.image !== "string")
-          {
-            imageForm = new FormData()
-            imageForm.append('image',values.image[0])
+          let imageForm = undefined;
+          if (values.image && typeof values.image !== "string") {
+            imageForm = new FormData();
+            imageForm.append("image", values.image[0]);
           }
-         
 
           mutate({
             postdata: {
-              title: values.title,
+              title: initialValues.title || values.title,
               content: values.content,
               image: imageForm,
             },
@@ -69,11 +78,16 @@ const EditPageForm = ({
         })}
         className="flex flex-col w-full m-auto border-3 rounded-2xl text-left border-sushi p-4 mb-4 "
       >
-        <label htmlFor="title"> Title</label>
-        <input className="input" placeholder="Title" {...register("title")} />
+        <label htmlFor="title"> Title (Cannot be changed) </label>
+        <input
+          className="input"
+          placeholder="Title"
+          {...register("title")}
+          readOnly
+        />
         {errors.title && <ErrorMessage error={errors.title.message!} />}
 
-        <label htmlFor="content"> Add Some Content(Optional)</label>
+        <label htmlFor="content"> Add Some Content(Optional) </label>
         <textarea
           className="input"
           placeholder="content"
@@ -91,7 +105,11 @@ const EditPageForm = ({
         <label htmlFor="image">
           Do you want to Change an Image? (Optional)
         </label>
-        <input className="input" type="file" {...register("image")} />
+        <input
+          className="input file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-pacifika file:text-ch hover:file:bg-sushi file:cursor-pointer text-xs text-slate-500 cursor-pointer"
+          type="file"
+          {...register("image")}
+        />
         {error && <ErrorMessage error={error.message} />}
 
         <button className="button m-4">Edit Post</button>
